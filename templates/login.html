@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <nav>
+        <ul>
+            <li class="website-name">Welcome {% if current_user.is_authenticated %}{{ current_user.email }}{% else %}Guest{%
+                endif %}</li>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="#contact">Contact</a></li>
+            {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('logout') }}">Log out</a></li>
+            {% else %}
+            <li><a href="{{ url_for('register') }}">Sign up</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+<head>
+    <title>Sign In</title>
+    <link rel="stylesheet" href='/static/register.css' /> <!-- Include your external CSS file if needed -->
+    <style>
+        body {
+            font-family: Verdana, Geneva, sans-serif;
+            background-color:  #E0EAFC;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #0b0047;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        form {
+            width: 300px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+
+        span.error {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Log In</h1>
+    <p>New User? <a href="{{ url_for('register') }}">Click to Sign up!</a></p>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.email.label }}<br>
+            {{ form.email(size=32) }}<br>
+            {% for error in form.email.errors %}
+            <span class="error">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}<br>
+            {% for error in form.password.errors %}
+            <span class="error">{{ error }}</span>
+            {% endfor %}
+            {% if form.password.errors and not form.email.errors %}
+                <span class="invalid">Incorrect password.</span>
+            {% endif %}
+        </p>
+        <p>{{ form.remember() }} {{ form.remember.label }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</body>
+</html>

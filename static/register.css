@@ -1,0 +1,64 @@
+.website-name {
+    font-family: Verdana, Geneva, sans-serif;
+    padding: 14px 16px;
+    color: white;
+    font-weight: bold;
+    font-size: larger;
+}
+
+nav {
+    
+    top: 0;
+    z-index: 1030; /* to prevent the navbar getting covered up by other content */
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* Horizontally center the content */
+    /* position: fixed; */
+    /* Fixed position */
+    top: 0;
+    left: 0;
+    right: 0;
+    /* Stick to the top of the viewport */
+    /* width: 100vw; */
+    /* Full width */
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000000;
+    /* Background color of the navigation bar */
+}
+
+nav ul li {
+    display: inline-block;
+    /* Display the list items horizontally */
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    /* Text color of the navigation links */
+    text-align: center;
+    font-family: Verdana, Geneva, sans-serif;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: lightgoldenrodyellow;
+    /* Background color of the navigation links on hover */
+    color: darkgoldenrod;
+    text-decoration: underline;
+    transition: background-color 0.3s ease;
+}
+
+h1 {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 2.5em;
+    color: #0b0047;
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<!-- Navigation Bar -->
+<nav>
+    <ul>
+        <li class="website-name">Welcome {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Guest{% endif %}</li>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="{{ url_for('register') }}">Sign up</a></li>
+        {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('logout') }}">Log out</a></li>
+        {% else %}
+            <li><a href="{{ url_for('login') }}">Log in</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+
+<head>
+    <title>BUDGET TRACKER</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/united/bootstrap.min.css" integrity="sha384-JW3PJkbqVWtBhuV/gsuyVVt3m/ecRJjwXC3gCXlTzZZV+zIEEl6AnryAriT7GWYm" crossorigin="anonymous">
+    <link rel="stylesheet" href='/static/home.css' />
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/trash.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <main class="container p-4">
+        <h1 class="display-4 text-center mt-4" style="margin-bottom: 15px; margin-top: 70px;"> BUDGET TRACKER </h1>
+
+        <form action="/create-transaction" method="POST">
+            <!-- Replace '/submit' with your form submission URL -->
+            <table>
+                <thead>
+                    <tr>
+                        <th style="color:#0b0047;">Date</th>
+                        <th style="color:#0b0047;">Amount</th>
+                        <th style="color:#0b0047;">Category</th>
+                        <th style="color:#0b0047;">Description</th>
+                        <th></th>
+                        <!-- An empty th for the submit button -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="date" name="date" placeholder="dd/mm/yyyy" style="height: 40px; width: 120px;" autofocus></td>
+                        <td><input type="text" name="amount" placeholder="€" style="width: 60px; text-align: center;">
+                        </td>
+                        <td>
+                            <select name="category" class="tall-dropdown" style="width: 135px;">
+                                <optgroup label="Income" style="color: green;">
+                                    <option value="Salary">Salary</option>
+                                    <option value="Side hustle">Side hustle</option>
+                                    <option value="Investments">Investments</option>
+                                </optgroup>
+                                <optgroup label="Expense" style="color: red;">
+                                    <option value="Housing">Housing</option>
+                                    <option value="Transportation">Transportation</option>
+                                    <option value="Food">Food</option>
+                                    <option value="Utilities">Utilities</option>
+                                    <option value="Medical">Medical</option>
+                                    <option value="Leisure">Leisure</option>
+                                    <option value="Education">Education</option>
+                                </optgroup>
+                            </select>
+
+                        </td>
+                        <td><input type="text" name="description" placeholder="Description" style="width: 140px; text-align:  left;"></td>
+                        <td><input type="submit" value="Save"></td>
+                        <!-- Submit button -->
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+
+        <body>
+
+            <div style="position: relative;">
+                <h1 style="position: relative; margin-left: 165px; margin-bottom: 20px; margin-top: 50px;">
+                    Transactions 2024
+                    <span style="position: absolute; bottom: 0; left: 0; width: 20.175cm; border-bottom: 3px solid #0b0047;"></span>
+                </h1>
+                <!-- <button class="filter-button" style="top: 20px; position: absolute; right: 0;">Filter <i class="fa fa-filter"></i></button>
+               -->
+            </div>
+
+            <table>
+                <thead>
+                    <tr class="tdexcel">
+                        <th class="thexcel">Date</th>
+                        <th class="thexcel">Month</th>
+                        <th class="thexcel">Amount</th>
+                        <th class="thexcel">Category</th>
+                        <th class="thexcel">Income/Expense</th>
+                        <th class="thexcel">Description</th>
+                        <th class="thexcel">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for trans in transactions %}
+                    <tr>
+                        <td class="tdexcel" style="{% if trans.id % 2 != 0 %}background-color:
+                        #f0fbff;{% elif trans.id % 2 == 0 %}background-color: #acdcee;{% endif %}">{{ trans.date }}
+                        </td>
+
+                        <td class="tdexcel" style="{% if trans.id % 2 != 0 %}background-color:
+                        #f0fbff;{% elif trans.id % 2 == 0 %}background-color: #acdcee;{% endif %}">{{ trans.month }}
+                        </td>
+
+                        <td class="tdexcel" style="{% if trans.id % 2 != 0 %}background-color:
+                        #f0fbff;{% elif trans.id % 2 == 0 %}background-color: #acdcee;{% endif %}">{{ trans.amount }}€
+                        </td>
+
+                        <td class="tdexcel" style="{% if trans.id % 2 != 0 %}background-color:
+                        #f0fbff;{% elif trans.id % 2 == 0 %}background-color: #acdcee;{% endif %}">{{ trans.category }}
+                        </td>
+
+                        <td class="tdexcel" style="{% if trans.id % 2 != 0 %}background-color:
+                         #f0fbff;{% elif trans.id % 2 == 0 %}background-color: #acdcee;{% endif %};
+                         {% if trans.income_expense == 'Expense' %}color:red;{% else %}color:green;{% endif %}">
+                            {{ trans.income_expense }}
+                        </td>
+
+
+                        <td class="tdexcel" style="font-style: italic; text-transform: capitalize; {% if trans.id % 2 != 0 %}background-color:
+                        #f0fbff;{% elif trans.id % 2 == 0 %}background-color: #acdcee;{% endif %}">{{ trans.description }}
+                        </td>
+
+                        <td class="tdexcel" class="tdbuttonexcel" style="width:50px; {% if trans.id % 2 != 0 %}background-color:
+                        #f0fbff;{% elif trans.id % 2 == 0 %}background-color: #acdcee;{% endif %}">
+                            <!-- Delete Button -->
+                            <a href="/delete/{{trans.id}}">
+                                <i class="fa fa-trash" style="color:darksalmon;"></i>
+                            </a>
+                            <!-- Edit Button -->
+                            <a href="/edit/{{trans.id}}">
+                                <i class="fa fa-edit" style="color:dimgrey;"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Delete All Button -->
+            <form action="{{ url_for('delete_all_transactions') }}" method="post" onsubmit="return confirm('Are you sure you want to delete all transactions?');">
+                <button type="submit" style="background-color: transparent; border: none; cursor: pointer; color: darksalmon; text-decoration: underline; font-weight: bold; font-size: 16px;">
+                    Delete All
+                </button>
+            </form>
+
+
+        </body>
+
+
+
+
+    </main>
+
+
+
+
+</body>
+
+</html>

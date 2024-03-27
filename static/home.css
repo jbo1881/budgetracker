@@ -1,0 +1,304 @@
+body {
+    background: #E0EAFC;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #CFDEF3, #E0EAFC);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+nav {
+    
+    top: 0;
+    z-index: 1030; /* to prevent the navbar getting covered up by other content */
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* Horizontally center the content */
+    /* position: fixed; */
+    /* Fixed position */
+    top: 0;
+    left: 0;
+    right: 0;
+    /* Stick to the top of the viewport */
+    /* width: 100vw; */
+    /* Full width */
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000000;
+    /* Background color of the navigation bar */
+}
+
+nav ul li {
+    display: inline-block;
+    /* Display the list items horizontally */
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    /* Text color of the navigation links */
+    text-align: center;
+    font-family: Verdana, Geneva, sans-serif;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: lightgoldenrodyellow;
+    /* Background color of the navigation links on hover */
+    color: darkgoldenrod;
+    text-decoration: underline;
+    transition: background-color 0.3s ease;
+}
+
+h1 {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 2.5em;
+    color: #0b0047;
+}
+
+
+/* FORM TABLE */
+
+
+/* Centering the form */
+
+form {
+    width: 70%;
+    /* Adjust the width of the form */
+    margin: 0 auto;
+    /* Centers the form horizontally */
+    text-align: center;
+    /* Aligns content in the center */
+}
+
+
+/* Centering the table within the form */
+
+table {
+    width: 70%;
+    /* Adjust the width of the table */
+    margin: 0 auto;
+    /* Centers the table horizontally within the form */
+    text-align: center;
+    /* Resets text alignment inside the table cells */
+}
+
+
+/* Reduce width of input fields to fit placeholder text */
+
+input[type="text"] {
+    width: calc(100% - 12px);
+    /* Adjust the width to fit the placeholder */
+    padding: 6px;
+    /* Optional padding for input fields */
+}
+
+
+/* Vertically align the thead in the middle of td */
+
+thead tr th {
+    vertical-align: middle;
+}
+
+
+/* Style the submit button */
+
+input[type="submit"] {
+    background-color: #1bad0d;
+    /* Change to your desired color */
+    color: white;
+    /* Text color */
+    padding: 5px 10px;
+    /* Padding around the text */
+    border: none;
+    /* Remove button border */
+    border-radius: 5px;
+    /* Rounded corners */
+    cursor: pointer;
+    /* Show pointer on hover */
+}
+
+
+/* Hover effect for the submit button */
+
+input[type="submit"]:hover {
+    background-color: #86f03f;
+    /* Change to a slightly darker shade for hover effect */
+}
+
+
+/* EXCEL TABLE */
+
+.thexcel,
+.tdexcel {
+    border: 2px solid #0b0047;
+    padding: 4px;
+}
+
+.thexcel {
+    background-color: #0b0047;
+    color: #E0EAFC;
+    text-align: center;
+    /* Center horizontally */
+    vertical-align: middle;
+    /* Center vertically */
+    border: #0b0047
+}
+
+.tdexcel {
+    background-color: hsl(0, 0%, 100%);
+    text-align: center;
+    vertical-align: middle;
+    font-size: medium;
+}
+
+.tdbuttonexcel {
+    background-color: hsl(0, 0%, 100%);
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #070707;
+}
+
+.trexcel:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.trexcel:hover {
+    background-color: #f1f1f1;
+}
+
+.btn {
+    display: inline-block;
+    margin: 0 auto;
+    /* Centers the button horizontally */
+    text-align: center;
+}
+
+.tall-dropdown {
+    height: 40px;
+    /* Adjust the height as needed */
+    overflow-y: auto;
+    /* Add scrollbar if necessary */
+}
+
+.current-month {
+    color: blue;
+    /* Change the color to blue for the current month */
+}
+
+
+/* WEBSITE NAME NAVIGATION BAR */
+
+.website-name {
+    font-family: Verdana, Geneva, sans-serif;
+    padding: 14px 16px;
+    color: white;
+    font-weight: bold;
+    font-size: larger;
+}
+
+{
+    % if trans.category=='Salary' %
+}
+
+.category-salary {
+    background-color: #D6EFFF;
+    color: #000;
+}
+
+{
+    % elif trans.category=='Side hustle' %
+}
+
+.category-side-hustle {
+    background-color: #C2E8FF;
+    color: #000;
+}
+
+{
+    % elif trans.category=='Investments' %
+}
+
+.category-investments {
+    background-color: #94D6FF;
+    color: #000;
+}
+
+{
+    % elif trans.category=='Housing' %
+}
+
+.category-housing {
+    background-color: #6BC6FF;
+    color: #000;
+}
+
+{
+    % elif trans.category=='Transportation' %
+}
+
+.category-transportation {
+    background-color: #42B7FF;
+    color: #000;
+}
+
+{
+    % elif trans.category=='Food' %
+}
+
+.category-food {
+    background-color: #1AA7FF;
+    color: #000;
+}
+
+{
+    % elif trans.category=='Utilities' %
+}
+
+.category-utilities {
+    background-color: #0091EB;
+    color: #000;
+}
+
+{
+    % elif trans.category=='Medical' %
+}
+
+.category-medical {
+    background-color: #0576BD;
+    color: #000;
+}
+
+{
+    % elif trans.category=='Leisure' %
+}
+
+.category-leisure {
+    background-color: #0E5B8B;
+    color: #000;
+}
+
+{
+    % elif trans.category=='Miscellaneous' %
+}
+
+.category-miscellaneous {
+    background-color: #104160;
+    color: #000;
+}
+
+{
+    % endif %
+}
+
+.filter-button:hover {
+    background-color: lightyellow;
+}
