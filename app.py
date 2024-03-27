@@ -401,33 +401,27 @@ def dashboard():
     plot_html = income_expense_plot(transactions)
 
     #CATEGORIES
-    def sum_category(cat):
+    def sum_category(user_id, cat):
         return sum(transaction.amount for transaction in 
-               Transactions.query.options(defer(Transactions.user_id)).filter(Transactions.category == cat).all())
+                Transactions.query.filter_by(user_id=user_id, category=cat).all())
 
     #INCOME
     #Salary
-    sum_salary = sum_category('Salary')
-    #Side hustle
-    sum_sidehustle = sum_category('Side hustle')
-    #Investments
-    sum_investments = sum_category('Investments')
+    sum_salary = sum_category(current_user.id, 'Salary')
+
+    sum_sidehustle = sum_category(current_user.id, 'Side hustle')
+    sum_investments = sum_category(current_user.id, 'Investments')
+
 
     #EXPENSE
     #Housing
-    sum_housing = sum_category('Housing')
-    #Transportation
-    sum_transportation = sum_category('Transportation')
-    #Food
-    sum_food = sum_category('Food')
-    #Utilities
-    sum_utilities = sum_category('Utilities')
-    #Medical
-    sum_medical = sum_category('Medical')
-    #Leisure
-    sum_leisure = sum_category('Leisure')
-    #Education
-    sum_education = sum_category('Education')
+    sum_housing = sum_category(current_user.id, 'Housing')
+    sum_transportation = sum_category(current_user.id, 'Transportation')
+    sum_food = sum_category(current_user.id, 'Food')
+    sum_utilities = sum_category(current_user.id, 'Utilities')
+    sum_medical = sum_category(current_user.id, 'Medical')
+    sum_leisure = sum_category(current_user.id, 'Leisure')
+    sum_education = sum_category(current_user.id, 'Education')
 
 
     def categories_plot():
