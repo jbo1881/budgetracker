@@ -6,7 +6,7 @@
         <li class="website-name">Welcome {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Guest{% endif %}</li>
         <li><a href="{{ url_for('home') }}">Home</a></li>
         <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact</a></li>
         <li><a href="{{ url_for('register') }}">Sign up</a></li>
         {% if current_user.is_authenticated %}
             <li><a href="{{ url_for('logout') }}">Log out</a></li>

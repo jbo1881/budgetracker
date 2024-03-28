@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <nav>
+        <ul>
+            <li class="website-name">Welcome {% if current_user.is_authenticated %}{{ current_user.email }}{% else %}Guest{%
+                endif %}</li>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('logout') }}">Log out</a></li>
+            {% else %}
+            <li><a href="{{ url_for('register') }}">Sign up</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+<head>
+    <title>Contact</title>
+    <link rel="stylesheet" href='/static/register.css' /> <!-- Include your external CSS file if needed -->
+    <style>
+        body {
+            font-family: Verdana, Geneva, sans-serif;
+            background-color:  #E0EAFC;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #0b0047;
+        }
+
+        p {
+            text-align: center;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <h1>Contact</h1>
+    <p><b>Jaume Boguñá Urue</b></p>
+    <p><b>Email</b>: <a href="mailto:jboguurue@gmail.com">jboguurue@gmail.com</a></p>
+    <p><b>Github</b>: <a href="https://github.com/jbo1881">https://github.com/jbo1881</a></p>
+    <p><b>Linkedin</b>: <a href="https://www.linkedin.com/in/jaume-bogu%C3%B1%C3%A1-urue-93924824a/">https://www.linkedin.com/in/jaume-bogu%C3%B1%C3%A1-urue-93924824a/</a></p>
+    <div style="text-align: center;">
+        <img src="{{ url_for('static', filename='jaume.png') }}" alt="Profile Jaume" width="200" height="200">
+    </div>
+</body>
+
+
+</html>

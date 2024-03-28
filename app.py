@@ -200,8 +200,10 @@ def create():
         # Handle the case where the user is not logged in
         return redirect(url_for("login"))
 
-
-
+#Contact
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
 
 # Delete transaction
 @app.route("/delete/<id>")
@@ -247,6 +249,9 @@ def edit(id):
 # Personal Finance Dashboard
 @app.route("/personal-finance-dashboard")
 def dashboard():
+    if not current_user.is_authenticated:
+        return redirect(url_for("login"))
+
     transactions = Transactions.query.filter_by(user_id=current_user.id).filter(
     Transactions.date >= datetime(2024, 1, 1),
     Transactions.date < datetime(2025, 1, 1)
