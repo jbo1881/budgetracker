@@ -83,8 +83,6 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 # Routes for registration and login
-
-
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
@@ -157,21 +155,15 @@ def home():
     return render_template("home.html", transactions=transactions, month_name=month_name)
 
 # Function to convert format string to Python datetime object
-
-
 def convert_to_datetime(date_str):
     return datetime.strptime(date_str, "%Y-%m-%d").date()
 
 # Function to retrieve the name of the month from the date
-
-
 def get_month_name(date):
     month_name = date.strftime("%B")  # %B gives the full month name
     return month_name
 
 # Create transaction page
-
-
 @app.route("/create-transaction", methods=['POST'])
 def create():
     if current_user.is_authenticated:
@@ -353,8 +345,6 @@ def dashboard():
     current_month = datetime.now().month
 
     # Generate Income-Expense Plot dynamically
-
-
     def income_expense_plot(transactions):
         # Plotting
         plt.figure(figsize=(5.5, 4))
@@ -421,11 +411,17 @@ def dashboard():
     #EXPENSE
     #Housing
     sum_housing = sum_category(current_user.id, 'Housing')
+    #Transportation
     sum_transportation = sum_category(current_user.id, 'Transportation')
+    #Food
     sum_food = sum_category(current_user.id, 'Food')
+    #Utilities
     sum_utilities = sum_category(current_user.id, 'Utilities')
+    #Medical
     sum_medical = sum_category(current_user.id, 'Medical')
+    #Leisure
     sum_leisure = sum_category(current_user.id, 'Leisure')
+    #Education
     sum_education = sum_category(current_user.id, 'Education')
 
 
@@ -484,32 +480,6 @@ def dashboard():
                            sum_investments=sum_investments, sum_housing=sum_housing, sum_transportation=sum_transportation, sum_food=sum_food,
                            sum_utilities=sum_utilities, sum_medical=sum_medical, sum_leisure=sum_leisure, sum_education=sum_education,
                            plot_html_bar=plot_html_bar)
-
-# TEMPLATES
-
-
-
-# from sqlalchemy import text
-
-# # Function to reset transactions table
-# def reset_transactions_table():
-#     with app.app_context():
-#         # Get a database connection
-#         conn = db.engine.connect()
-        
-#         # Drop existing transactions table if it exists
-#         drop_statement = text('DROP TABLE IF EXISTS transactions')
-#         conn.execute(drop_statement)
-        
-#         # Recreate transactions table with the desired schema
-#         db.create_all()
-
-#         # Close the connection
-#         conn.close()
-
-# # Call the function to reset transactions table
-# reset_transactions_table()
-
 
 
 if __name__ == "__main__":

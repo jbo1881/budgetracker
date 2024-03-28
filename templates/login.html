@@ -2,8 +2,7 @@
 <html>
     <nav>
         <ul>
-            <li class="website-name">Welcome {% if current_user.is_authenticated %}{{ current_user.email }}{% else %}Guest{%
-                endif %}</li>
+            
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('contact') }}">Contact</a></li>
             {% if current_user.is_authenticated %}
@@ -15,7 +14,7 @@
     </nav>
 <head>
     <title>Sign In</title>
-    <link rel="stylesheet" href='/static/register.css' /> <!-- Include your external CSS file if needed -->
+    <link rel="stylesheet" href='/static/register.css' /> 
     <style>
         body {
             font-family: Verdana, Geneva, sans-serif;

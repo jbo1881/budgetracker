@@ -3,8 +3,7 @@
 
 <nav>
     <ul>
-        <li class="website-name">Welcome {% if current_user.is_authenticated %}{{ current_user.email }}{% else %}Guest{%
-            endif %}</li>
+
         <li><a href="{{ url_for('home') }}">Home</a></li>
         <li><a href="{{ url_for('contact') }}">Contact</a></li>
         {% if current_user.is_authenticated %}
